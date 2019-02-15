@@ -22,7 +22,12 @@ STAR --runThreadN 4 --runMode genomeGenerate --genomeDir ./GenomeDir --sjdbGTFfi
 
 fastqc -t 2 ERR431583_1.fastq.gz ERR431583_2.fastq.gz
 
-trimmomatic PE -threads 4 -phred33 ERR431583_1.fastq.gz ERR431583_2.fastq.gz R1_P.fastq.gz R1_U.fastq.gz R2_P.fastq.gz R2_U.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.38-1/adapters/NexteraPE-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+zcat ERR431583_1.fastq.gz | head -n 4000000 | gzip > ERR431583_downsize_1.fastq.gz
+zcat ERR431583_2.fastq.gz | head -n 4000000 | gzip > ERR431583_downsize_2.fastq.gz
+
+
+trimmomatic PE -threads 4 -phred33 ERR431583_downsize_1.fastq.gz ERR431583_downsize_2.fastq.gz R1_P.fastq.gz R1_U.fastq.gz R2_P.fastq.gz R2_U.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.38-1/adapters/NexteraPE-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+
 
 STAR --genomeDir ./GenomeDir \
      --runThreadN 4 \
