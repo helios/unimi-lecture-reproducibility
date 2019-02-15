@@ -22,3 +22,7 @@ header-includes:
 *  [RNA-seq pipeline](./02-RNA-seq.html)
 *  [First script](./FirstScript.sh)
 *  [Dockerizing your pipeline](./04-Docker-Intro.html)
+
+[Lecture](https://github.com/helios/unimi-lecture-reproducibility)
+
+https://github.com/helios/unimi-lecture-reproducibility
